@@ -79,13 +79,11 @@ module.exports = (moduleDefinitions, existingModules = {}) => {
 
     checkMissingDependencies(moduleDefinitions, existingModules, dependencyGraph);
 
-    const graphDetails = madge(dependencyGraph);
-
-    checkCircularDependencies(graphDetails);
-
     const createdModules = createAllModules(dependencyGraph, existingModules, moduleDefinitions);
-
-    checkVoidModules(createdModules, graphDetails);
+    madge(dependencyGraph).then((graphDetails) => {
+        checkCircularDependencies(graphDetails);
+        checkVoidModules(createdModules, graphDetails);
+    });
 
     // remove void modules from return
     const availableModules = f.omitBy(module => module == null)(createdModules);
