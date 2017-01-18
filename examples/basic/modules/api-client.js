@@ -1,7 +1,7 @@
 // this module is a sample for an api client that fetches data from a rest api
 module.exports = ({ config: { apiURL } }) => ({
     getUsers() {
-		// make a request to the apiURL
+        // make a request to the apiURL
         console.log(`mocking request to ${apiURL}`);
         return new Promise((resolve) => {
             setTimeout(() => resolve([

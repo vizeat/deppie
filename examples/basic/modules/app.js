@@ -1,7 +1,7 @@
 // this module is void (has no return)
 // it's an entry point that starts the express server
 // and will not be used by other modules
-const express = require('express');
+const express = require('express'); // eslint-disable-line
 const _ = require('lodash');
 
 module.exports = ({ routes, config }) => {

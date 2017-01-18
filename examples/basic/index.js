@@ -1,4 +1,4 @@
-const deppie = require('deppie');
+const deppie = require('deppie'); // eslint-disable-line
 
 // require all modules
 const config = require('./modules/config');

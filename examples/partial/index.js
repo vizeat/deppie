@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require('express'); // eslint-disable-line
 const _ = require('lodash');
-const deppie = require('deppie');
+const deppie = require('deppie'); // eslint-disable-line
 
 /*
 here config is not defined as a module that can be passed to deppie
