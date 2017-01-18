@@ -4,7 +4,7 @@ module.exports = ({ apiClient }) => [{
     pattern: '/api/users',
     handler: (req, res) => {
         apiClient.getUsers()
-            .then(data => {
+            .then((data) => {
                 res.send(data);
             })
             .catch(err => res.status(500).send(err.toString()));

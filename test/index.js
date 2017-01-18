@@ -45,7 +45,7 @@ describe('deppie', () => {
             const dep2 = ({ dep1 }) => noop(dep1);
             const modules = deppie({ dep1, dep2 });
             assert.throws(() => { modules.dep1 = {}; },
-                'modifying dependency'
+                'modifying dependency',
             );
         });
     });
@@ -56,7 +56,7 @@ describe('deppie', () => {
             const dep1 = ({ dep3 }) => ({ a: dep3 });
             const dep2 = ({ dep1 }) => ({ a: dep1 });
             assert.throws(() => deppie({ dep1, dep2 }),
-                'missing dependencies'
+                'missing dependencies',
             );
         });
     });
@@ -66,7 +66,7 @@ describe('deppie', () => {
             const dep1 = ({ dep2 }) => ({ a: dep2 });
             const dep2 = ({ dep1 }) => ({ a: dep1 });
             assert.throws(() => deppie({ dep1, dep2 }),
-                'circular dependencies'
+                'circular dependencies',
             );
         });
     });
@@ -76,7 +76,7 @@ describe('deppie', () => {
             const dep1 = ({ dep1 }) => ({ a: dep1 });
             const dep2 = ({ dep1 }) => ({ a: dep1 });
             assert.throws(() => deppie({ dep1, dep2 }),
-                'circular dependencies'
+                'circular dependencies',
             );
         });
     });
@@ -86,7 +86,7 @@ describe('deppie', () => {
             const dep1 = () => {};
             const dep2 = ({ dep1 }) => ({ a: dep1 });
             assert.throws(() => deppie({ dep1, dep2 }),
-                'depending on void modules'
+                'depending on void modules',
             );
         });
     });

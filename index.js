@@ -13,7 +13,7 @@ const parseDependencies = (functionStr) => {
     // get the first argument of the function, then get its desctructued properties
     const properties = f.flow(
         f.get('program.body.0.expression.params.0.properties'),
-        f.map('key.name')
+        f.map('key.name'),
         )(parsed);
     return properties;
 };
@@ -32,9 +32,9 @@ const createModule = (name, dependencyGraph, existingModules, moduleDefinitions)
         (accumulatedModules, name) =>
             f.assign(
                 accumulatedModules,
-                createModule(name, dependencyGraph, accumulatedModules, moduleDefinitions)
+                createModule(name, dependencyGraph, accumulatedModules, moduleDefinitions),
             ),
-        existingModules
+        existingModules,
     )(moduleDependencies);
 
     // create module
@@ -48,8 +48,8 @@ const createAllModules = (dependencyGraph, existingModules, moduleDefinitions) =
     f.reduce(
         (accumulatedModules, name) =>
             createModule(name, dependencyGraph, accumulatedModules, moduleDefinitions),
-        existingModules
-    )
+        existingModules,
+    ),
 )(dependencyGraph);
 
 const createProxy = (dependencies) => {
@@ -74,7 +74,7 @@ const createProxy = (dependencies) => {
 // TODO: check wrong function signature (no destructuring, multiple args, ...)
 module.exports = (moduleDefinitions, existingModules = {}) => {
     const dependencyGraph = f.mapValues(
-        module => parseDependencies(module.toString())
+        module => parseDependencies(module.toString()),
     )(moduleDefinitions);
 
     checkMissingDependencies(moduleDefinitions, existingModules, dependencyGraph);
